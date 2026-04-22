@@ -65,7 +65,7 @@
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 2rem;
         }
 
         .nav-links a {
@@ -170,6 +170,57 @@
             background-color: #b39268;
         }
 
+        /* Heritage Section */
+        .heritage-section {
+            display: flex;
+            align-items: center;
+            gap: 5rem;
+            padding: 8rem 5%;
+            background-color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .heritage-image {
+            flex: 1;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(196, 164, 124, 0.15);
+            opacity: 0;
+            transform: translateX(-60px);
+        }
+
+        .heritage-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 1s ease;
+        }
+
+        .heritage-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .heritage-content {
+            flex: 1;
+            opacity: 0;
+            transform: translateX(60px);
+        }
+
+        .heritage-content h2 {
+            font-size: 3.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .heritage-content p {
+            font-size: 1.15rem;
+            color: #5a5247;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
         /* Catalog Section */
         .section {
             padding: 8rem 5%;
@@ -250,7 +301,9 @@
         .catalog-info p {
             color: var(--accent-color);
             font-weight: 600;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         /* Reviews Section */
@@ -303,12 +356,75 @@
             background-color: var(--accent-color);
         }
 
+        /* Wholesale Inquiry Section */
+        .wholesale-section {
+            background-color: var(--bg-color);
+            padding: 8rem 5%;
+        }
+
+        .wholesale-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 4rem;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(196, 164, 124, 0.08);
+            opacity: 0;
+            transform: translateY(60px);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1.2rem;
+            border: 2px solid #f4ecd8;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            background-color: #fdfcf0;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            background-color: #fff;
+            box-shadow: 0 0 0 4px rgba(196, 164, 124, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            opacity: 1; /* Override the default .btn opacity of 0 which is meant for the hero */
+            transform: none; /* Override default .btn transform */
+        }
+
         /* Footer */
         footer {
             background-color: var(--text-color);
             color: #fff;
             padding: 6rem 5% 3rem;
             text-align: center;
+            border-radius: 60px 60px 0 0;
         }
 
         .footer-logo {
@@ -335,6 +451,9 @@
         @media (max-width: 992px) {
             .hero h1 { font-size: 4.5rem; }
             .section-title { font-size: 3rem; }
+            .heritage-section { flex-direction: column; text-align: center; gap: 3rem; }
+            .heritage-image { transform: translateY(40px); }
+            .heritage-content { transform: translateY(40px); }
         }
 
         @media (max-width: 768px) {
@@ -346,6 +465,7 @@
             .section-title { font-size: 2.5rem; }
             .catalog-img { height: 300px; }
             .section-bg { border-radius: 40px 40px 0 0; }
+            .wholesale-container { padding: 2rem; }
         }
 
         @media (max-width: 480px) {
@@ -361,8 +481,10 @@
         <a href="#" class="logo brand-font">Heera Store</a>
         <div class="nav-links">
             <a href="#home">Home</a>
+            <a href="#heritage">Heritage</a>
             <a href="#catalog">Catalog</a>
             <a href="#reviews">Reviews</a>
+            <a href="#wholesale">Wholesale</a>
         </div>
     </nav>
 
@@ -375,6 +497,18 @@
             <h1 class="brand-font">Elegance in Every Detail</h1>
             <p>Discover the finest collection of premium goods curated specifically for the modern aesthetic. Immerse yourself in the high-end world of Heera Store.</p>
             <a href="#catalog" class="btn">Explore Collection</a>
+        </div>
+    </section>
+
+    <section class="heritage-section" id="heritage">
+        <div class="heritage-image">
+            <img src="https://images.unsplash.com/photo-1582582621959-48d27397dc69?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Heera Store Heritage">
+        </div>
+        <div class="heritage-content">
+            <h2 class="brand-font">Our Heritage</h2>
+            <p>Founded on a passion for timeless elegance, Heera Store began as a small family-run atelier dedicated to curating the world's most exquisite decor. Our name, "Heera," translates to diamond—a symbol of purity, strength, and everlasting beauty.</p>
+            <p>For over two decades, we have traveled the globe, collaborating with master artisans and visionary designers to source pieces that do more than fill a space; they tell a story. Every item in our collection is a testament to meticulous craftsmanship and a deep appreciation for the subtle art of luxury living.</p>
+            <p>Today, Heera Store stands as a beacon for those who seek to elevate their surroundings. We invite you to be a part of our ongoing legacy, where every detail matters and true elegance never fades.</p>
         </div>
     </section>
 
@@ -391,7 +525,7 @@
                 </div>
                 <div class="catalog-info">
                     <h3>Velvet Accent Chair</h3>
-                    <p>$450.00</p>
+                    <p>Inquire for Wholesale</p>
                 </div>
             </div>
             <!-- Catalog Item 2 -->
@@ -401,7 +535,7 @@
                 </div>
                 <div class="catalog-info">
                     <h3>Minimalist Ceramic Vase</h3>
-                    <p>$85.00</p>
+                    <p>Inquire for Wholesale</p>
                 </div>
             </div>
             <!-- Catalog Item 3 -->
@@ -411,7 +545,7 @@
                 </div>
                 <div class="catalog-info">
                     <h3>Golden Table Lamp</h3>
-                    <p>$120.00</p>
+                    <p>Inquire for Wholesale</p>
                 </div>
             </div>
         </div>
@@ -439,6 +573,34 @@
                     <span>Michael Chen</span>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="wholesale-section" id="wholesale">
+        <div class="section-header">
+            <h2 class="section-title brand-font">Wholesale Inquiry</h2>
+            <p>Partner with us and bring Heera Store's elegance to your clientele.</p>
+        </div>
+        <div class="wholesale-container">
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Jane Doe">
+                </div>
+                <div class="form-group">
+                    <label for="business">Business Name</label>
+                    <input type="text" id="business" name="business" required placeholder="Jane's Boutique">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="jane@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="details">Inquiry Details</label>
+                    <textarea id="details" name="details" required placeholder="Tell us about your business and which catalog items you're interested in..."></textarea>
+                </div>
+                <button type="submit" class="btn submit-btn">Submit Inquiry</button>
+            </form>
         </div>
     </section>
 
@@ -488,7 +650,31 @@
             }
         });
 
-        // 3. Staggered Catalog Items Reveal on Scroll
+        // 3. Heritage Reveal Animation
+        gsap.to(".heritage-image", {
+            scrollTrigger: {
+                trigger: ".heritage-section",
+                start: "top 80%",
+            },
+            x: 0,
+            opacity: 1,
+            duration: 1.2,
+            ease: "power3.out"
+        });
+
+        gsap.to(".heritage-content", {
+            scrollTrigger: {
+                trigger: ".heritage-section",
+                start: "top 80%",
+            },
+            x: 0,
+            opacity: 1,
+            duration: 1.2,
+            ease: "power3.out",
+            delay: 0.2
+        });
+
+        // 4. Staggered Catalog Items Reveal on Scroll
         gsap.utils.toArray('.catalog-item').forEach((item, i) => {
             gsap.to(item, {
                 scrollTrigger: {
@@ -503,7 +689,7 @@
             });
         });
 
-        // 4. Review Cards Pop Reveal
+        // 5. Review Cards Pop Reveal
         gsap.utils.toArray('.review-card').forEach((card, i) => {
             gsap.to(card, {
                 scrollTrigger: {
@@ -516,6 +702,18 @@
                 ease: "back.out(1.5)",
                 delay: i * 0.2
             });
+        });
+
+        // 6. Wholesale Form Reveal
+        gsap.to(".wholesale-container", {
+            scrollTrigger: {
+                trigger: ".wholesale-section",
+                start: "top 80%",
+            },
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out"
         });
     </script>
 </body>
