@@ -15,11 +15,7 @@
             --accent-color: #c4a47c;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -33,7 +29,7 @@
             font-family: 'Monotype Corsiva', 'Apple Chancery', 'URW Chancery L', cursive;
         }
 
-        /* Navbar with Logos */
+        /* Navbar with Dual Logos */
         nav {
             position: fixed;
             top: 0;
@@ -43,30 +39,17 @@
             justify-content: space-between;
             align-items: center;
             z-index: 100;
-            background: rgba(253, 252, 240, 0.9);
+            background: rgba(253, 252, 240, 0.85);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(196, 164, 124, 0.2);
         }
 
-        .nav-logo-img {
-            height: 60px; /* Adjust size based on your logo cutout */
-            width: auto;
-        }
+        .nav-logo { height: 50px; width: auto; }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text-color); font-size: 0.9rem; position: relative; }
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Hero Section with Slogan */
+        /* Hero Section */
         .hero {
             height: 100vh;
             display: flex;
@@ -77,103 +60,106 @@
             padding: 0 5%;
         }
 
+        .hero-content { z-index: 1; }
+
         .slogan-hindi {
             font-family: 'Noto Sans Devanagari', sans-serif;
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             margin-bottom: 0.5rem;
-            color: var(--text-color);
+            opacity: 0;
+            transform: translateY(30px);
         }
 
-        .sub-slogan {
+        .sub-h3 {
             font-size: 1.2rem;
-            letter-spacing: 4px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
             color: var(--accent-color);
             margin-bottom: 2rem;
-            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(30px);
         }
 
-        .hero h1 {
-            font-size: 4.5rem;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-        }
+        .hero h1 { font-size: 5rem; margin-bottom: 1.5rem; opacity: 0; transform: translateY(40px); }
 
-        /* Catalog Section */
+        /* Catalog Section (Restored Styles) */
         .section { padding: 8rem 5%; }
         .section-bg { background-color: var(--bg-secondary); border-radius: 60px 60px 0 0; }
         .section-header { text-align: center; margin-bottom: 5rem; }
-        .section-title { font-size: 3.5rem; color: var(--accent-color); }
+        .section-title { font-size: 3.5rem; color: var(--accent-color); margin-bottom: 1rem; }
 
         .catalog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
         }
 
         .catalog-item {
             background: #fff;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            transition: transform 0.4s ease;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.03);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             opacity: 0;
-            transform: translateY(40px);
+            transform: translateY(60px);
         }
 
-        .catalog-item:hover { transform: translateY(-10px); }
-
-        .catalog-img {
-            width: 100%;
-            height: 350px;
-            background-color: #eee9dc;
+        .catalog-item:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 50px rgba(196, 164, 124, 0.15);
         }
 
-        .catalog-img img { width: 100%; height: 100%; object-fit: cover; }
+        .catalog-img { width: 100%; height: 400px; overflow: hidden; }
+        .catalog-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+        .catalog-item:hover .catalog-img img { transform: scale(1.1); }
 
-        .catalog-info { padding: 1.5rem; text-align: center; }
-        .catalog-info h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
-        .catalog-info p { color: var(--accent-color); font-size: 0.9rem; font-weight: 600; }
+        .catalog-info { padding: 2.5rem; text-align: center; }
+        .catalog-info h3 { font-size: 1.6rem; margin-bottom: 0.5rem; }
+        .catalog-info p { color: var(--accent-color); font-weight: 600; text-transform: uppercase; }
 
-        /* Legacy styles kept for consistency */
-        .heritage-section { display: flex; align-items: center; gap: 5rem; padding: 8rem 5%; background: #fff; }
-        .heritage-image, .heritage-content { flex: 1; opacity: 0; }
-        .heritage-image img { width: 100%; border-radius: 30px; }
-        
-        .reviews-container { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; }
-        .review-card { background: #fff; padding: 2.5rem; border-radius: 20px; max-width: 400px; opacity: 0; }
-        
-        .wholesale-section { padding: 8rem 5%; }
-        .wholesale-container { max-width: 800px; margin: 0 auto; background: #fff; padding: 3rem; border-radius: 30px; opacity: 0; }
-        .form-group { margin-bottom: 1.5rem; }
-        .form-group input, .form-group textarea { width: 100%; padding: 1rem; border: 1px solid #ddd; border-radius: 10px; }
-        .btn { display: inline-block; padding: 1rem 2.5rem; background: var(--accent-color); color: #fff; text-decoration: none; border-radius: 30px; }
-
-        footer { background: var(--text-color); color: #fff; padding: 4rem 5%; text-align: center; border-radius: 40px 40px 0 0; }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
-            .slogan-hindi { font-size: 1.5rem; }
-            .nav-logo-img { height: 40px; }
+        /* Wholesale Section (Restored) */
+        .wholesale-section { background-color: var(--bg-color); padding: 8rem 5%; }
+        .wholesale-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 4rem;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(196, 164, 124, 0.08);
+            opacity: 0;
+            transform: translateY(60px);
         }
+
+        .form-group { margin-bottom: 2rem; }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 1.2rem; border: 2px solid #f4ecd8; border-radius: 12px;
+            background-color: #fdfcf0;
+        }
+
+        .btn {
+            display: inline-block; padding: 1.2rem 3rem; background-color: var(--accent-color);
+            color: #fff; text-decoration: none; border-radius: 40px; transition: all 0.3s;
+            cursor: pointer; border: none;
+        }
+
+        footer { background-color: var(--text-color); color: #fff; padding: 6rem 5% 3rem; text-align: center; border-radius: 60px 60px 0 0; }
     </style>
 </head>
 <body>
 
     <nav>
-        <img src="logo-cutout.png" alt="Heera Store Logo" class="nav-logo-img">
-        
+        <img src="logo.png" alt="Logo Left" class="nav-logo">
         <div class="nav-links">
             <a href="#home">Home</a>
             <a href="#catalog">Catalog</a>
-            <a href="#wholesale">Contact</a>
+            <a href="#wholesale">Wholesale</a>
         </div>
-
-        <img src="logo-cutout.png" alt="Heera Store Logo" class="nav-logo-img">
+        <img src="logo.png" alt="Logo Right" class="nav-logo">
     </nav>
 
     <section class="hero" id="home">
         <div class="hero-content">
-            <h3 class="sub-slogan">The House of Readymade</h3>
+            <h3 class="sub-h3">THE HOUSE OF READYMADE</h3>
             <h2 class="slogan-hindi">समय बीतता गया। विश्वास बढ़ता गया।।</h2>
             <h1 class="brand-font">Elegance in Every Detail</h1>
             <a href="#catalog" class="btn">Explore Collection</a>
@@ -182,50 +168,71 @@
 
     <section class="section section-bg" id="catalog">
         <div class="section-header">
-            <h2 class="section-title brand-font">Our Fashion Catalog</h2>
-            <p>Premium ethnic and western wear for women and girls.</p>
+            <h2 class="section-title brand-font">Our Exquisite Catalog</h2>
+            <p>Premium Girls & Women's Fashion.</p>
         </div>
         <div class="catalog-grid">
             <div class="catalog-item">
-                <div class="catalog-img"><img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=500&q=80" alt="Pant Set"></div>
-                <div class="catalog-info"><h3>Women's Pant Set</h3><p>View Collection</p></div>
+                <div class="catalog-img"><img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=500" alt="Pant Set"></div>
+                <div class="catalog-info"><h3>Women's Pant Set</h3><p>New Arrival</p></div>
             </div>
             <div class="catalog-item">
-                <div class="catalog-img"><img src="https://images.unsplash.com/photo-1621335829175-95f437384d7c?auto=format&fit=crop&w=500&q=80" alt="Girls Top"></div>
-                <div class="catalog-info"><h3>Designer Girls Top</h3><p>View Collection</p></div>
+                <div class="catalog-img"><img src="https://images.unsplash.com/photo-1621335829175-95f437384d7c?w=500" alt="Girls Top"></div>
+                <div class="catalog-info"><h3>Girls Fancy Top</h3><p>New Arrival</p></div>
             </div>
             <div class="catalog-item">
-                <div class="catalog-img"><img src="https://images.unsplash.com/photo-1574271143515-5cddf8da19ca?auto=format&fit=crop&w=500&q=80" alt="T-Shirt"></div>
-                <div class="catalog-info"><h3>Casual Girls T-Shirt</h3><p>View Collection</p></div>
+                <div class="catalog-img"><img src="https://images.unsplash.com/photo-1574271143515-5cddf8da19ca?w=500" alt="Girls T-shirt"></div>
+                <div class="catalog-info"><h3>Girls T-shirt</h3><p>New Arrival</p></div>
             </div>
             <div class="catalog-item">
-                <div class="catalog-img"><img src="https://images.unsplash.com/photo-1583391733956-6c78276477e2?auto=format&fit=crop&w=500&q=80" alt="Kurti"></div>
-                <div class="catalog-info"><h3>Ethnic Kurtis</h3><p>View Collection</p></div>
+                <div class="catalog-info"><h3>Designer Kurti</h3><p>New Arrival</p></div>
             </div>
             <div class="catalog-item">
-                <div class="catalog-img"><img src="https://images.unsplash.com/photo-1568252542512-9fe8fe9c87bb?auto=format&fit=crop&w=500&q=80" alt="Gowns"></div>
-                <div class="catalog-info"><h3>Western Gowns</h3><p>View Collection</p></div>
+                <div class="catalog-info"><h3>Ethnic Wear</h3><p>New Arrival</p></div>
             </div>
             <div class="catalog-item">
-                <div class="catalog-img"><img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=500&q=80" alt="Party Wear"></div>
-                <div class="catalog-info"><h3>Evening Party Wear</h3><p>View Collection</p></div>
+                <div class="catalog-info"><h3>Western Gown</h3><p>New Arrival</p></div>
             </div>
             <div class="catalog-item">
-                <div class="catalog-img"><img src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?auto=format&fit=crop&w=500&q=80" alt="Trousers"></div>
-                <div class="catalog-info"><h3>Ladies Trousers</h3><p>View Collection</p></div>
+                <div class="catalog-info"><h3>Party Wear</h3><p>New Arrival</p></div>
             </div>
             <div class="catalog-item">
-                <div class="catalog-img"><img src="https://images.unsplash.com/photo-1539008835158-30114008779b?auto=format&fit=crop&w=500&q=80" alt="Summer Wear"></div>
-                <div class="catalog-info"><h3>Cotton Summer Wear</h3><p>View Collection</p></div>
+                <div class="catalog-info"><h3>Plazo Set</h3><p>New Arrival</p></div>
             </div>
             <div class="catalog-item">
-                <div class="catalog-img"><img src="https://images.unsplash.com/photo-1614676471928-2ed0ad1061a4?auto=format&fit=crop&w=500&q=80" alt="Co-ord Sets"></div>
-                <div class="catalog-info"><h3>Trendy Co-ord Sets</h3><p>View Collection</p></div>
+                <div class="catalog-info"><h3>Middi Dress</h3><p>New Arrival</p></div>
             </div>
             <div class="catalog-item">
-                <div class="catalog-img"><img src="https://images.unsplash.com/photo-1617130863154-8c47ef91d725?auto=format&fit=crop&w=500&q=80" alt="Indo Western"></div>
-                <div class="catalog-info"><h3>Indo-Western Fusion</h3><p>View Collection</p></div>
+                <div class="catalog-info"><h3>Summer Wear</h3><p>New Arrival</p></div>
             </div>
+        </div>
+    </section>
+
+    <section class="wholesale-section" id="wholesale">
+        <div class="section-header">
+            <h2 class="section-title brand-font">Wholesale Inquiry</h2>
+            <p>Partner with Heera Store.</p>
+        </div>
+        <div class="wholesale-container">
+            <form action="#">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <label>Business Name</label>
+                    <input type="text" placeholder="Your Shop Name">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="Email Address">
+                </div>
+                <div class="form-group">
+                    <label>Inquiry Details</label>
+                    <textarea placeholder="Your requirements..."></textarea>
+                </div>
+                <button type="submit" class="btn">Submit Inquiry</button>
+            </form>
         </div>
     </section>
 
@@ -233,15 +240,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script>
         gsap.registerPlugin(ScrollTrigger);
-        
-        // Entrance animations for slogan and catalogs
-        gsap.to(".hero-content > *", { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: "power4.out" });
-        
+
+        // Hero Entrance
+        const tl = gsap.timeline();
+        tl.to(".sub-h3", { y: 0, opacity: 1, duration: 1 })
+          .to(".slogan-hindi", { y: 0, opacity: 1, duration: 1 }, "-=0.7")
+          .to(".hero h1", { y: 0, opacity: 1, duration: 1 }, "-=0.7");
+
+        // Catalog Staggered Reveal (Zoom & Move)
         gsap.utils.toArray('.catalog-item').forEach((item, i) => {
             gsap.to(item, {
-                scrollTrigger: { trigger: item, start: "top 90%" },
-                y: 0, opacity: 1, duration: 0.8, delay: i * 0.1
+                scrollTrigger: { trigger: item, start: "top 85%" },
+                y: 0, opacity: 1, duration: 1, ease: "power3.out", delay: i * 0.1
             });
+        });
+
+        // Form Reveal
+        gsap.to(".wholesale-container", {
+            scrollTrigger: { trigger: ".wholesale-section", start: "top 80%" },
+            y: 0, opacity: 1, duration: 1
         });
     </script>
 </body>
