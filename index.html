@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heera Store - High-End Catalog</title>
+    <!-- Google Fonts for standard text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Beige Color Theme */
+            --bg-color: #fdfcf0; /* Very light beige */
+            --bg-secondary: #f4ecd8; /* Medium beige */
+            --text-color: #3b352b; /* Dark charcoal/brown */
+            --accent-color: #c4a47c; /* Warm Gold/Beige accent */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 400;
+        }
+
+        .brand-font {
+            /* Requested Font */
+            font-family: 'Monotype Corsiva', 'Apple Chancery', 'URW Chancery L', cursive;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: rgba(253, 252, 240, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(196, 164, 124, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 400;
+            font-size: 1rem;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 0 5%;
+            overflow: hidden;
+        }
+
+        .hero-bg-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(196,164,124,0.2) 0%, rgba(253,252,240,0) 70%);
+        }
+
+        .shape-1 { width: 60vw; height: 60vw; top: -10vw; left: -10vw; }
+        .shape-2 { width: 70vw; height: 70vw; bottom: -20vw; right: -10vw; }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: 5.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            line-height: 1.1;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            color: #5a5247;
+            opacity: 0;
+            transform: translateY(40px);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background-color: var(--accent-color);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 40px;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 10px 20px rgba(196, 164, 124, 0.3);
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .btn:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(196, 164, 124, 0.5);
+            background-color: #b39268;
+        }
+
+        /* Catalog Section */
+        .section {
+            padding: 8rem 5%;
+        }
+
+        .section-bg {
+            background-color: var(--bg-secondary);
+            border-radius: 60px 60px 0 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+        }
+
+        .catalog-item {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.03);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            transform: translateY(60px);
+            cursor: pointer;
+        }
+
+        .catalog-item:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 50px rgba(196, 164, 124, 0.15);
+        }
+
+        .catalog-img {
+            width: 100%;
+            height: 400px;
+            background-color: #e9e3d3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .catalog-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .catalog-item:hover .catalog-img img {
+            transform: scale(1.08);
+        }
+
+        .catalog-info {
+            padding: 2.5rem;
+            text-align: center;
+            background: #fff;
+        }
+
+        .catalog-info h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .catalog-info p {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 1.3rem;
+        }
+
+        /* Reviews Section */
+        .reviews-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            justify-content: center;
+        }
+
+        .review-card {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 30px;
+            padding: 3rem;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.02);
+            opacity: 0;
+            transform: scale(0.95);
+        }
+
+        .review-stars {
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+        }
+
+        .review-text {
+            font-size: 1.15rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+            color: #5a5247;
+            line-height: 1.8;
+        }
+
+        .review-author {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .author-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-color);
+            color: #fff;
+            padding: 6rem 5% 3rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 3.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .footer-text {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 4.5rem; }
+            .section-title { font-size: 3rem; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Could be replaced with a hamburger menu */
+            .logo { font-size: 2rem; }
+            .hero h1 { font-size: 3.5rem; }
+            .hero p { font-size: 1.1rem; }
+            .section { padding: 5rem 5%; }
+            .section-title { font-size: 2.5rem; }
+            .catalog-img { height: 300px; }
+            .section-bg { border-radius: 40px 40px 0 0; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2.8rem; }
+            .btn { padding: 1rem 2rem; font-size: 1rem; }
+            .review-card { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo brand-font">Heera Store</a>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#catalog">Catalog</a>
+            <a href="#reviews">Reviews</a>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="brand-font">Elegance in Every Detail</h1>
+            <p>Discover the finest collection of premium goods curated specifically for the modern aesthetic. Immerse yourself in the high-end world of Heera Store.</p>
+            <a href="#catalog" class="btn">Explore Collection</a>
+        </div>
+    </section>
+
+    <section class="section section-bg" id="catalog">
+        <div class="section-header">
+            <h2 class="section-title brand-font">Our Exquisite Catalog</h2>
+            <p>Handpicked pieces that define contemporary luxury.</p>
+        </div>
+        <div class="catalog-grid">
+            <!-- Catalog Item 1 -->
+            <div class="catalog-item">
+                <div class="catalog-img">
+                    <img src="https://images.unsplash.com/photo-1600164318042-516d24606716?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Velvet Accent Chair">
+                </div>
+                <div class="catalog-info">
+                    <h3>Velvet Accent Chair</h3>
+                    <p>$450.00</p>
+                </div>
+            </div>
+            <!-- Catalog Item 2 -->
+            <div class="catalog-item">
+                <div class="catalog-img">
+                    <img src="https://images.unsplash.com/photo-1507149833265-60c372daea22?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Minimalist Ceramic Vase">
+                </div>
+                <div class="catalog-info">
+                    <h3>Minimalist Ceramic Vase</h3>
+                    <p>$85.00</p>
+                </div>
+            </div>
+            <!-- Catalog Item 3 -->
+            <div class="catalog-item">
+                <div class="catalog-img">
+                    <img src="https://images.unsplash.com/photo-1540932239986-30128078f3c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Golden Table Lamp">
+                </div>
+                <div class="catalog-info">
+                    <h3>Golden Table Lamp</h3>
+                    <p>$120.00</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="reviews">
+        <div class="section-header">
+            <h2 class="section-title brand-font">Client Testimonials</h2>
+            <p>What our esteemed customers have to say about us.</p>
+        </div>
+        <div class="reviews-container">
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"The pieces I received from Heera Store completely transformed my living space. The quality is unmatched and the beige aesthetic is beautifully curated."</p>
+                <div class="review-author">
+                    <div class="author-img" style="background: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80') center/cover;"></div>
+                    <span>Sarah Jenkins</span>
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Absolutely stunning catalog. I was looking for high-end decor and found exactly what I needed. The customer service was also impeccable."</p>
+                <div class="review-author">
+                    <div class="author-img" style="background: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80') center/cover;"></div>
+                    <span>Michael Chen</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo brand-font">Heera Store</div>
+        <p class="footer-text">Elevating your lifestyle with premium curated aesthetics.</p>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Heera Store. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- GSAP Scripts for High-End Motion Graphics -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        // Register ScrollTrigger Plugin
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 1. Hero Entrance Animation
+        const heroTl = gsap.timeline();
+        heroTl.to(".hero h1", { y: 0, opacity: 1, duration: 1.2, ease: "power4.out", delay: 0.3 })
+              .to(".hero p", { y: 0, opacity: 1, duration: 1, ease: "power4.out" }, "-=0.8")
+              .to(".hero .btn", { y: 0, opacity: 1, duration: 1, ease: "power4.out" }, "-=0.8");
+
+        // 2. Parallax Background Shapes
+        gsap.to(".shape-1", {
+            y: "20vh",
+            x: "10vw",
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".hero",
+                start: "top top",
+                end: "bottom top",
+                scrub: 1
+            }
+        });
+        
+        gsap.to(".shape-2", {
+            y: "-20vh",
+            x: "-10vw",
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".hero",
+                start: "top top",
+                end: "bottom top",
+                scrub: 1
+            }
+        });
+
+        // 3. Staggered Catalog Items Reveal on Scroll
+        gsap.utils.toArray('.catalog-item').forEach((item, i) => {
+            gsap.to(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 85%", // Triggers when the top of the element hits 85% down the viewport
+                },
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                ease: "power3.out",
+                delay: i * 0.15 // Stagger effect
+            });
+        });
+
+        // 4. Review Cards Pop Reveal
+        gsap.utils.toArray('.review-card').forEach((card, i) => {
+            gsap.to(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 85%",
+                },
+                scale: 1,
+                opacity: 1,
+                duration: 0.8,
+                ease: "back.out(1.5)",
+                delay: i * 0.2
+            });
+        });
+    </script>
+</body>
+</html>
